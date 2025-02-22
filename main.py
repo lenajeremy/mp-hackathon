@@ -4,11 +4,11 @@ from database.db import DB
 import os
 
 
-def parse_and_update_db():
+def parse_and_update_db(testcase_directory):
     """
     parse files and updates db
     """
-    days = os.listdir("./test-case-1")
+    days = os.listdir(testcase_directory)
     p = Parser()
 
     with DB() as db:
@@ -34,7 +34,7 @@ month_dictionary = {
 
 def main():
     # run this once
-    # parse_and_update_db()
+    parse_and_update_db("./test-case-1")
 
     # answer questions
     with DB() as db:
