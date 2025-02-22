@@ -47,7 +47,7 @@ DO NOTHING
 HIGHEST_SALES_VOLUME_IN_A_DAY = """
 SELECT
   STRFTIME('%Y-%m-%d', date) AS date,
-  COUNT(date) AS volume,
+  COUNT(*) AS volume
 FROM Transactions
 GROUP BY
   STRFTIME('%Y-%m-%d', date)
@@ -55,7 +55,7 @@ ORDER BY volume DESC
 LIMIT 1;
 """
 
-HIGHEST_SALES_VOLUME_IN_A_DAY = """
+HIGHEST_SALES_VALUE_IN_A_DAY = """
 SELECT
   STRFTIME('%Y-%m-%d', date) AS date,
   SUM(value) AS value
@@ -71,10 +71,9 @@ SELECT id, MAX(total_sold) FROM Products;
 """
 
 HIGHEST_STAFF_FOR_EACH_MONTH = """
-SELECT
-  *
-FROM Transactions
-GROUP BY
-  STRFTIME('%m', date)
-ORDER BY value DESC;
+SELECT staff_id, SUM(value) as total_sales FROM Transactions
+WHERE STRFTIME('%m', date) = ?
+GROUP BY staff_id
+ORDER BY total_sales DESC
+LIMIT 1;
 """

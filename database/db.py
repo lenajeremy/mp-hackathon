@@ -15,9 +15,7 @@ class DB:
         """
         Runs when exiting `with` block
         """
-        print(f"Exception Type: {exc_type}")
-        print(f"Exception Value: {exc_val}")
-        print(f"Traceback: {traceback}")
+        print("closing database connection")
         self.conn.close()
 
     def __enter__(self):
