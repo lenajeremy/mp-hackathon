@@ -62,8 +62,14 @@ def main():
             res = db.executor.execute(queries.HIGHEST_STAFF_FOR_EACH_MONTH, [i_str])
             data = res.fetchone()
             print(f"""\n{month_dictionary[i_str]} | "Staff:{data[0]}" | NGN{data[1]}.\n""")
-    
+
         
+        # highest hour of the day based on average transaction volume
+        res = db.executor.execute(queries.HIGHEST_HOUR_OF_THE_DAY)
+        data = res.fetchone()
+        print(f"""\nThe highest hour of the day is {data[1]}""")
+    
+
 
 if __name__ == "__main__":
     main()

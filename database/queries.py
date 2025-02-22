@@ -77,3 +77,13 @@ GROUP BY staff_id
 ORDER BY total_sales DESC
 LIMIT 1;
 """
+
+HIGHEST_HOUR_OF_THE_DAY = """
+SELECT AVG(value), STRFTIME('%H', date) as average
+FROM
+    Transactions
+GROUP BY
+    STRFTIME('%H', date)
+ORDER BY average DESC
+LIMIT 1;
+"""
